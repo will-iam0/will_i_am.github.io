@@ -1,59 +1,421 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wil | Portafolio Audiovisual</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu Nombre — Diseño &amp; Desarrollo</title>
+<meta name="description" content="Portafolio personal de proyectos de diseño y código.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0b0c;
+    --surface: #141416;
+    --line: #2a2a28;
+    --text: #ededea;
+    --muted: #8a8a85;
+    --accent: #ffb000;
+    --accent-dim: #6a4a04;
+    --radius: 2px;
+  }
 
-    <!-- Hoja de estilos -->
-    <link rel="stylesheet" href="style.css">
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: inherit; }
+
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  ::selection{ background: var(--accent); color: #0b0b0c; }
+
+  :focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(11,11,12,0.85);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .navbar{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .brand{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-decoration:none;
+  }
+  .brand .dot{ color: var(--accent); }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap: 28px;
+    margin:0; padding:0;
+  }
+  nav a{
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-transform: uppercase;
+    transition: color .15s ease;
+  }
+  nav a:hover, nav a:focus-visible{ color: var(--text); }
+  .navbar button.menu-btn{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    margin-bottom: 22px;
+    display:flex;
+    align-items:center;
+    gap: 10px;
+  }
+  .cursor{
+    display:inline-block;
+    width: 8px; height: 16px;
+    background: var(--accent);
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 4.2rem);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    margin: 0 0 26px;
+    max-width: 16ch;
+  }
+  .hero h1 span{ color: var(--muted); }
+
+  .hero p.lede{
+    max-width: 52ch;
+    color: var(--muted);
+    font-size: 17px;
+    margin: 0 0 34px;
+  }
+
+  .hero .meta{
+    display:flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .hero .meta span{ border-left: 2px solid var(--accent); padding-left: 10px; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{
+    padding: 90px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 46px;
+  }
+  .section-head .path{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--accent);
+    font-size: 13px;
+  }
+  .section-head h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .section-head::after{
+    content:"";
+    flex:1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    display:grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+    text-decoration:none;
+    color: inherit;
+    transition: background .15s ease, padding-left .15s ease;
+  }
+  .project:first-of-type{ border-top: none; }
+  .project:hover, .project:focus-visible{
+    background: var(--surface);
+    padding-left: 8px;
+  }
+  .project .index{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--muted);
+    font-size: 13px;
+    padding-top: 4px;
+  }
+  .project .info h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+  }
+  .project .info p{
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 55ch;
+  }
+  .tags{
+    display:flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tags span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 3px 8px;
+    border-radius: var(--radius);
+  }
+  .project .year{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--muted);
+    font-size: 12px;
+    padding-top: 4px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px){
+    .project{ grid-template-columns: 34px 1fr; }
+    .project .year{ grid-column: 2; padding-top: 0; }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+  }
+  .about-grid p{
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 60ch;
+    margin: 0 0 18px;
+  }
+  .skills-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: flex-start;
+  }
+  .skills-list li{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    border-radius: var(--radius);
+  }
+  @media (max-width: 720px){
+    .about-grid{ grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  footer.section{ border-bottom:none; padding-bottom: 60px; }
+  .contact-links{
+    display:flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .contact-links a{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    text-decoration:none;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    transition: color .15s ease, padding-left .15s ease;
+  }
+  .contact-links a:last-child{ border-bottom: 1px solid var(--line); }
+  .contact-links a:hover, .contact-links a:focus-visible{
+    color: var(--accent);
+    padding-left: 10px;
+  }
+  .contact-links a .arrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .foot-note{
+    margin-top: 40px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Wil</h1>
-        <p>Editor Audiovisual y Cineasta</p>
-    </header>
+<header>
+  <div class="navbar">
+    <a href="#top" class="brand">tunombre<span class="dot">_</span>dev</a>
+    <nav>
+      <ul>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <main>
+<main id="top">
 
-        <section id="inicio">
-            <h2>Inicio</h2>
-            <p>Bienvenido a mi portafolio.</p>
-        </section>
+  <section class="hero wrap">
+    <div class="eyebrow">~/portafolio<span class="cursor" aria-hidden="true"></span></div>
+    <h1>Diseño y construyo <span>productos digitales.</span></h1>
+    <p class="lede">Soy [Tu Nombre], diseñador/a y desarrollador/a. Esto es una selección de proyectos recientes — código, interfaces y experimentos.</p>
+    <div class="meta">
+      <span>Medellín, CO</span>
+      <span>Disponible para proyectos</span>
+      <span>2026</span>
+    </div>
+  </section>
 
-        <section id="proyectos">
-            <h2>Proyectos</h2>
+  <section class="section wrap" id="proyectos">
+    <div class="section-head">
+      <span class="path">./proyectos</span>
+      <h2>Proyectos</h2>
+    </div>
 
-            <article>
-                <h3>Proyecto 1</h3>
-                <p>Descripción breve del proyecto.</p>
-            </article>
+    <a class="project" href="#" tabindex="0">
+      <span class="index mono">01</span>
+      <div class="info">
+        <h3>Nombre del proyecto</h3>
+        <p>Breve descripción de qué hace este proyecto y qué problema resuelve.</p>
+        <div class="tags"><span>React</span><span>Node</span><span>Figma</span></div>
+      </div>
+      <span class="year">2026</span>
+    </a>
 
-            <article>
-                <h3>Proyecto 2</h3>
-                <p>Descripción breve del proyecto.</p>
-            </article>
-        </section>
+    <a class="project" href="#" tabindex="0">
+      <span class="index mono">02</span>
+      <div class="info">
+        <h3>Otro proyecto</h3>
+        <p>Breve descripción de qué hace este proyecto y qué problema resuelve.</p>
+        <div class="tags"><span>TypeScript</span><span>CSS</span></div>
+      </div>
+      <span class="year">2025</span>
+    </a>
 
-        <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <p>Información personal y profesional.</p>
-        </section>
+    <a class="project" href="#" tabindex="0">
+      <span class="index mono">03</span>
+      <div class="info">
+        <h3>Tercer proyecto</h3>
+        <p>Breve descripción de qué hace este proyecto y qué problema resuelve.</p>
+        <div class="tags"><span>Python</span><span>Diseño UI</span></div>
+      </div>
+      <span class="year">2024</span>
+    </a>
+  </section>
 
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>correo@ejemplo.com</p>
-        </section>
+  <section class="section wrap" id="sobre-mi">
+    <div class="section-head">
+      <span class="path">./sobre-mi</span>
+      <h2>Sobre mí</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Cuenta aquí quién eres, tu enfoque de trabajo y qué tipo de proyectos te interesan. Dos o tres párrafos cortos suelen ser suficiente — la gente que llega aquí quiere entender rápido cómo piensas.</p>
+        <p>Puedes mencionar tu experiencia, tu proceso de trabajo, o algo que te distinga de otros perfiles similares.</p>
+      </div>
+      <ul class="skills-list">
+        <li>HTML/CSS</li>
+        <li>JavaScript</li>
+        <li>React</li>
+        <li>Figma</li>
+        <li>UI/UX</li>
+        <li>Python</li>
+        <li>Git</li>
+      </ul>
+    </div>
+  </section>
 
-    </main>
+  <footer class="section" id="contacto">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="path">./contacto</span>
+        <h2>Contacto</h2>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:tu@email.com">Email <span class="arrow mono">↗</span></a>
+        <a href="https://github.com/tu-usuario" target="_blank" rel="noopener">GitHub <span class="arrow mono">↗</span></a>
+        <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener">LinkedIn <span class="arrow mono">↗</span></a>
+      </div>
+      <div class="foot-note">
+        <span>© 2026 Tu Nombre</span>
+        <span>Hecho con HTML/CSS/JS</span>
+      </div>
+    </div>
+  </footer>
 
-    <footer>
-        <p>© 2026 Wil</p>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+</main>
 
 </body>
 </html>
