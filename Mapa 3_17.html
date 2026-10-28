@@ -1,0 +1,533 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mapa 3:17</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=Special+Elite&display=swap">
+<style>
+/* Concepto: un cuadro vertical 9:16 de celular. Mapa caminable a oscuras con luz de linterna;
+   cada lugar es una escena ilustrada con texto corto y botones en el tercio inferior. */
+:root{
+  --noche:#06080c; --piedra:#10161c; --piedra-2:#18212a; --linea:#2c3944;
+  --cristal:#8fd8ff; --linterna:#ffd68a; --tinta:#e8eef2; --tinta-2:#9fb0bb; --sangre:#d2402f;
+  --f-titulo:"Special Elite","Courier New",monospace;
+  --f-mano:"Caveat","Segoe Script","Bradley Hand",cursive;
+  --f-ui:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+html{height:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{height:100%;margin:0;background:var(--noche);color:var(--tinta);font-family:var(--f-ui);
+  padding-block:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-tap-highlight-color:transparent}
+.stage{position:relative;height:100%;width:100%;max-width:calc(100dvh*9/16);margin:0 auto;
+  container-type:inline-size;overflow:hidden;background:var(--piedra);user-select:none;-webkit-user-select:none}
+.screen{position:absolute;inset:0}
+[hidden]{display:none!important}
+
+/* Escenas */
+.art{position:absolute;inset:0 0 auto 0;height:66%;background:var(--noche)}
+.art svg{display:block;width:100%;height:100%}
+.info{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:10px;
+  padding:64px 18px 18px;background:linear-gradient(to top,var(--noche) 64%,rgba(6,8,12,0))}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cristal)}
+.titulo{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:clamp(38px,15cqw,70px);
+  letter-spacing:.07em;line-height:1;text-shadow:0 0 22px rgba(143,216,255,.45)}
+.txt{margin:0;max-width:60ch;font-size:clamp(16px,4.4cqw,21px);line-height:1.38;text-wrap:pretty}
+.txt.mano{font-family:var(--f-mano);font-weight:500;font-size:clamp(22px,6.4cqw,30px);line-height:1.12;color:var(--linterna)}
+.txt.raya{font-family:var(--f-titulo);letter-spacing:.06em;color:#d3dce2}
+.txt.notaa{font-family:var(--f-mano);font-weight:500;font-size:clamp(20px,5.6cqw,26px);line-height:1.12;color:#cfd8de}
+.aviso,.credits{margin:0;font-size:12px;line-height:1.45;color:var(--tinta-2)}
+.btns{display:grid;gap:8px;margin-top:4px}
+.btns.tres{grid-template-columns:repeat(3,1fr)}
+.btns.tres .btn:nth-child(n+4){grid-column:1/-1}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:10px 14px;
+  font:600 15px/1.2 var(--f-ui);letter-spacing:.02em;color:var(--tinta);text-align:center;text-decoration:none;
+  background:rgba(143,216,255,.07);border:1px solid rgba(143,216,255,.45);border-radius:6px;cursor:pointer;
+  transition:background .15s,border-color .15s}
+.btn:hover{background:rgba(143,216,255,.16);border-color:var(--cristal)}
+.btn:active{background:rgba(143,216,255,.26)}
+.btn.primary{background:rgba(255,214,138,.12);border-color:rgba(255,214,138,.7);color:#fff3da}
+.btn.primary:hover{background:rgba(255,214,138,.22);border-color:var(--linterna)}
+.btn svg{width:22px;height:22px;flex:none}
+.btns.tres .btn{flex-direction:column;gap:6px;padding:12px 6px;font-size:14px}
+.btns.tres .btn svg{width:30px;height:30px}
+:focus-visible{outline:2px solid var(--linterna);outline-offset:2px}
+g[data-go]{cursor:pointer}
+g[data-go]:focus-visible{outline:none}
+g[data-go]:focus-visible .boca-aro{stroke:var(--linterna);stroke-width:4}
+g[data-go]:hover .boca-aro{stroke:var(--cristal)}
+.flash{animation:flash 5s ease-in-out infinite}
+@keyframes flash{0%,100%{opacity:.04}6%,18%{opacity:1}30%{opacity:.04}}
+
+/* Mapa */
+#mapsvg{position:absolute;inset:0;touch-action:none;background:#10161c}
+#mapsvg svg{display:block;width:100%;height:100%}
+.btns.dos{grid-template-columns:1fr 1fr}
+.btns.dos .btn{min-height:46px;font-size:14px}
+.btns.dos .btn:nth-child(n+3){grid-column:auto}
+.btns.dos .btn.full{grid-column:1/-1}
+.sm{min-height:44px}
+.pulso{animation:pulso 1.4s ease-out both}
+@keyframes pulso{0%{opacity:0}15%{opacity:1}100%{opacity:.55}}
+.nota-pie{margin:0;font-size:12px;color:var(--tinta-2)}
+.maphud{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:8px;padding:0 16px 16px;pointer-events:none}
+.maphud>*{pointer-events:auto}
+.hint{margin:0;text-align:center;font-size:12px;color:var(--tinta-2);text-shadow:0 1px 6px #000}
+#enter{min-height:52px}
+
+/* Formulario */
+.overlay{position:absolute;inset:0;z-index:5;overflow-y:auto;background:rgba(6,8,12,.97);padding:22px 18px 26px}
+.overlay h2{margin:0 0 6px;font-family:var(--f-titulo);font-weight:400;font-size:28px;letter-spacing:.05em}
+.overlay .desc{margin:0 0 18px;font-size:14px;line-height:1.5;color:var(--tinta-2)}
+fieldset{margin:0 0 16px;padding:0;border:0;min-width:0}
+legend,.lbl{display:block;padding:0;margin:0 0 6px;font-size:14px;font-weight:600}
+.req::after{content:" *";color:var(--sangre)}
+.ayuda{margin:0 0 6px;font-size:12px;line-height:1.4;color:var(--tinta-2)}
+.op{display:flex;align-items:center;gap:10px;min-height:40px;font-size:15px}
+.op input{width:18px;height:18px;accent-color:var(--cristal);flex:none}
+input[type=text],textarea{width:100%;font:400 16px/1.4 var(--f-ui);color:var(--tinta);background:var(--piedra-2);
+  border:1px solid var(--linea);border-radius:6px;padding:10px 12px}
+textarea{min-height:92px;resize:vertical}
+input[type=text]:focus,textarea:focus{border-color:var(--cristal);outline:none}
+.cuenta{margin:4px 0 0;font-size:12px;color:var(--tinta-2);text-align:right;font-variant-numeric:tabular-nums}
+.otra{margin-top:4px}
+.fila{display:flex;gap:8px;margin-top:8px}
+.fila .btn{flex:1}
+.ok{padding:22px 4px;text-align:center}
+.ok p{font-family:var(--f-titulo);font-size:20px;line-height:1.4;margin:0 0 20px}
+@media (prefers-reduced-motion:reduce){.flash{animation:none;opacity:1}.btn{transition:none}}
+</style>
+
+<main class="stage" id="stage">
+  <section class="screen scene" id="scene" aria-live="polite"></section>
+
+  <section class="screen" id="mapscreen" hidden>
+    <div id="mapsvg"></div>
+    <div class="maphud">
+      <p class="hint" id="hint">Toca un lugar. Mueve el dedo para pasear la linterna.</p>
+    </div>
+  </section>
+
+  <section class="overlay" id="formov" hidden>
+    <div id="formwrap">
+      <h2>Graba tu marca</h2>
+      <p class="desc">Antes de grabar, di desde qué tiempo escribes y quién eres allí. Tu marca queda en un cristal de la cueva para quien baje después. No escribas datos personales reales.</p>
+      <form id="marcaform" novalidate>
+        <fieldset id="f-tiempo">
+          <legend class="req">¿Desde qué tiempo escribes?</legend>
+          <label class="op"><input type="radio" name="tiempo" value="Aburráes">Aburráes</label>
+          <label class="op"><input type="radio" name="tiempo" value="Cárcel">Cárcel</label>
+          <label class="op"><input type="radio" name="tiempo" value="Universidad">Universidad</label>
+          <label class="op"><input type="radio" name="tiempo" value="Cuarentena">Cuarentena</label>
+          <label class="op"><input type="radio" name="tiempo" value="__otra">Otra:</label>
+          <input class="otra" type="text" id="tiempo-otra" maxlength="60" placeholder="¿Cuál?" aria-label="Otro tiempo" hidden>
+        </fieldset>
+        <fieldset>
+          <label class="lbl req" for="quien">¿Quién eres en ese tiempo?</label>
+          <p class="ayuda">Por ejemplo: un preso la noche del motín, una estudiante de geología, alguien que todavía no ha nacido. Es un personaje, no tu nombre real.</p>
+          <input type="text" id="quien" maxlength="80" autocomplete="off">
+        </fieldset>
+        <fieldset>
+          <label class="lbl req" for="marca">Tu marca</label>
+          <textarea id="marca" maxlength="140"></textarea>
+          <p class="cuenta"><span id="cuenta">0</span> / 140</p>
+        </fieldset>
+        <fieldset id="f-lugar">
+          <legend class="req">¿Dónde la dejas?</legend>
+          <label class="op"><input type="radio" name="lugar" value="Pasillo del 4">Pasillo del 4</label>
+          <label class="op"><input type="radio" name="lugar" value="La reja">La reja</label>
+          <label class="op"><input type="radio" name="lugar" value="Baño del espejo">Baño del espejo</label>
+          <label class="op"><input type="radio" name="lugar" value="Túneles">Túneles</label>
+          <label class="op"><input type="radio" name="lugar" value="Cueva">Cueva</label>
+        </fieldset>
+        <fieldset>
+          <label class="lbl" for="alias">¿Cómo quieres que te recuerden?</label>
+          <p class="ayuda">Un alias. No hace falta tu nombre real.</p>
+          <input type="text" id="alias" maxlength="40" autocomplete="off">
+        </fieldset>
+        <fieldset>
+          <label class="op"><input type="checkbox" id="auth">Acepto que mi marca pueda publicarse, editada o no, como parte del universo C4TA. *</label>
+        </fieldset>
+        <p class="ayuda" id="ferr" role="alert" style="color:var(--sangre)" hidden></p>
+        <p class="ayuda">Esta versión de prueba guarda tu marca solo en este navegador.</p>
+        <div class="fila">
+          <button class="btn" type="button" id="fcerrar">Volver al cristal</button>
+          <button class="btn primary" type="submit">Grabar</button>
+        </div>
+      </form>
+    </div>
+    <div class="ok" id="formok" hidden>
+      <p>Tu marca quedó grabada en el cristal. Tal vez alguien la encuentre.</p>
+      <button class="btn primary" type="button" id="fvolver">Volver al cristal</button>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ---------- Ilustraciones (SVG, vista 360 x 420) ---------- */
+const C = {cristal:'#8fd8ff', luz:'#ffd68a', roca:'#18212a', roca2:'#222e39', roca3:'#0c1117', noche:'#06080c'};
+const hdr = (label, inner, extra='') =>
+  `<svg viewBox="0 0 360 420" preserveAspectRatio="xMidYMin meet" role="img" aria-label="${label}" ${extra}>
+   <defs>
+    <radialGradient id="haz" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${C.luz}" stop-opacity=".55"/><stop offset="1" stop-color="${C.luz}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="brillo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${C.cristal}" stop-opacity=".8"/><stop offset="1" stop-color="${C.cristal}" stop-opacity="0"/></radialGradient>
+    <linearGradient id="cr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9f3ff"/><stop offset=".5" stop-color="#6cbfe8"/><stop offset="1" stop-color="#2c6f99"/></linearGradient>
+    <linearGradient id="crOff" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a4a56"/><stop offset="1" stop-color="#1a232b"/></linearGradient>
+    <linearGradient id="cono" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="${C.luz}" stop-opacity=".5"/><stop offset="1" stop-color="${C.luz}" stop-opacity="0"/></linearGradient>
+    <pattern id="piedra" width="36" height="22" patternUnits="userSpaceOnUse"><rect width="36" height="22" fill="${C.roca}"/><path d="M0 .5H36M18 .5V11M0 11.5H36M0 11V22M36 11V22" stroke="#0b1015" stroke-width="1" fill="none"/></pattern>
+   </defs>
+   <rect width="360" height="420" fill="${C.noche}"/>${inner}</svg>`;
+
+const espiral = (cx, cy, r, vueltas=2.6, paso=.22) => {
+  let d = '', a = 0, rr = 1; const rmax = vueltas*Math.PI*2;
+  for (; a <= rmax; a += paso) { rr = (a/rmax)*r; d += (d?'L':'M') + (cx+Math.cos(a)*rr).toFixed(1)+' '+(cy+Math.sin(a)*rr).toFixed(1); }
+  return d;
+};
+const cristal = (x, y, w, h, lit=true, lean=0) =>
+  `<g>${lit?`<ellipse cx="${x}" cy="${y-h*.45}" rx="${w*1.7}" ry="${h*.75}" fill="url(#brillo)" opacity=".5"/>`:''}
+   <polygon points="${x-w/2},${y} ${x-w/2+lean},${y-h*.78} ${x+lean},${y-h} ${x+w/2+lean},${y-h*.78} ${x+w/2},${y}" fill="url(#${lit?'cr':'crOff'})" stroke="${lit?'#d9f3ff':'#2b3945'}" stroke-width=".8" stroke-opacity=".7"/>
+   <polyline points="${x},${y} ${x+lean},${y-h}" stroke="#fff" stroke-opacity="${lit?.35:.08}" stroke-width=".8" fill="none"/></g>`;
+const mano = (x, y, s=1, rot=0, col='#cfd8de', op=.6) =>
+  `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})" fill="${col}" fill-opacity="${op}">
+   <ellipse cx="0" cy="0" rx="9" ry="11"/>
+   <rect x="-10" y="-27" width="4" height="19" rx="2"/><rect x="-5" y="-31" width="4" height="23" rx="2"/><rect x="0" y="-31" width="4" height="23" rx="2"/><rect x="5" y="-27" width="4" height="19" rx="2"/>
+   <rect x="-17" y="-8" width="4" height="14" rx="2" transform="rotate(-35 -15 0)"/></g>`;
+const manoVieja = (x, y, s=1, rot=0) =>
+  `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">
+   <path d="M-22 0 C-22 -14 -14 -26 -2 -26 C10 -26 22 -14 22 0 L22 28 L-22 28Z" fill="#8c735f"/>
+   ${[-14,-6,2,10].map(k=>`<rect x="${k}" y="-44" width="6" height="26" rx="3" fill="#8c735f"/>`).join('')}
+   ${[-20,-10,0,10].map(k=>`<path d="M${k-6} ${-4+k/4}h28M${k-4} ${8}h24" stroke="#4e3d30" stroke-width="1" fill="none"/>`).join('')}
+   </g>`;
+const puertaBase = (x, y, w, h, num, col='#2a3640') =>
+  `<g><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${col}" stroke="#0a0e12" stroke-width="2"/>
+   <rect x="${x+w*.14}" y="${y+h*.1}" width="${w*.72}" height="${h*.34}" fill="none" stroke="#0a0e12" stroke-width="1.5"/>
+   <rect x="${x+w*.14}" y="${y+h*.52}" width="${w*.72}" height="${h*.38}" fill="none" stroke="#0a0e12" stroke-width="1.5"/>
+   <text x="${x+w/2}" y="${y+h*.34}" text-anchor="middle" font-family="Special Elite,monospace" font-size="${h*.26}" fill="#d9e3ea" fill-opacity=".8">${num}</text>
+   <circle cx="${x+w*.84}" cy="${y+h*.52}" r="${Math.max(1.5,w*.04)}" fill="#6b7a86"/></g>`;
+
+const ART = {};
+
+ART.D01 = () => hdr('Un mapa antiguo trazado sobre una pared de piedra, visto de lejos en la penumbra, apenas iluminado por una linterna', `
+  <rect width="360" height="420" fill="url(#piedra)" opacity=".75"/>
+  <polygon points="30,420 260,150 340,230 90,420" fill="url(#cono)" opacity=".9" class="flash"/>
+  <g stroke="#9fb0bb" stroke-opacity=".75" stroke-width="1.6" fill="none" stroke-linecap="round" transform="translate(180 168)">
+    <rect x="-22" y="-82" width="44" height="16" rx="3"/><path d="M0 -66V-52"/>
+    <rect x="-62" y="-52" width="124" height="104" rx="22"/><rect x="-36" y="-30" width="72" height="60" rx="4"/>
+    <rect x="-98" y="-14" width="30" height="22" rx="2"/><rect x="68" y="-14" width="30" height="22" rx="2"/>
+    <path d="M0 52V74"/><rect x="-46" y="74" width="92" height="38" rx="4"/>
+    <path d="M-26 102l9-16 9 16zM0 84m-8 0a8 8 0 1 0 16 0a8 8 0 1 0-16 0M26 94" opacity=".7"/>
+    <ellipse cx="0" cy="136" rx="48" ry="9" fill="#9fb0bb" fill-opacity=".1" stroke="none"/>
+  </g>
+  <circle cx="62" cy="388" r="9" fill="${C.luz}"/><circle cx="62" cy="388" r="46" fill="url(#haz)"/>`);
+
+ART.D02 = () => hdr('La libreta de Sebastián abierta en el piso de un salón vacío, con la linterna encendida al lado', `
+  <rect width="360" height="420" fill="url(#piedra)" opacity=".5"/>
+  <rect y="190" width="360" height="230" fill="#0d1319"/>
+  <path d="M0 190H360" stroke="#222e39"/>
+  <path d="M-10 420L90 190M120 420L150 190M240 420L210 190M370 420L270 190" stroke="#16202a" stroke-width="1.2"/>
+  <ellipse cx="180" cy="320" rx="190" ry="110" fill="url(#haz)"/>
+  <g transform="translate(180 310)">
+    <path d="M-115 -45L-4 -60L-4 60L-120 70Z" fill="#e9dcc0" stroke="#4a3b27"/><path d="M4 -60L115 -45L120 70L4 60Z" fill="#efe3c8" stroke="#4a3b27"/>
+    <g stroke="#6b5a42" stroke-width="1" fill="none" opacity=".8">
+      <path d="M-100 -30l88 -12M-100 -14l88 -12M-100 2l88 -12M-100 18l88 -12M-100 34l88 -12"/>
+      <path d="M12 -42l88 12M12 -26l88 12M12 -10l88 12M12 6l88 12"/></g>
+    <path d="M-86 4c14-20 36-6 28 8s-26 4-20-6 16-6 14 0" fill="none" stroke="#3a2d1c" stroke-width="2"/>
+  </g>
+  <g transform="translate(300 330) rotate(-12)"><rect x="-8" y="-30" width="16" height="60" rx="4" fill="#2d3a45"/><rect x="-11" y="-38" width="22" height="12" rx="3" fill="#5a6c79"/><circle cx="0" cy="-44" r="6" fill="${C.luz}"/></g>
+  <polygon points="300,290 120,220 330,200" fill="url(#cono)" opacity=".5"/>
+  <path d="M30 255c22-22 46-22 66-6l14 30-80 6z" fill="#1c2631" stroke="#2c3944"/>`);
+
+ART.D04 = () => hdr('Un pasillo largo con una puerta marcada con un 4; al fondo, la misma puerta otra vez; una nota de papel en la puerta y letras rayadas en la pared', `
+  <polygon points="0,0 360,0 360,420 0,420" fill="#0b1015"/>
+  <polygon points="0,0 150,130 150,300 0,420" fill="url(#piedra)" opacity=".8"/>
+  <polygon points="360,0 210,130 210,300 360,420" fill="url(#piedra)" opacity=".7"/>
+  <polygon points="0,420 150,300 210,300 360,420" fill="#0e151b"/>
+  <polygon points="0,0 150,130 210,130 360,0" fill="#080b0f"/>
+  ${puertaBase(150,130,60,170,'4','#222e39')}
+  <g transform="translate(180 215) scale(.34) translate(-180 -215)" opacity=".001"></g>
+  <path d="M158 120h44v10h-44z" fill="#0a0e12"/>
+  <polygon points="150,130 210,130 205,300 155,300" fill="none"/>
+  <g transform="translate(180 120) scale(.28)" opacity=".55">${puertaBase(-30,-10,60,170,'4','#222e39')}</g>
+  <rect x="165" y="190" width="30" height="38" fill="#e9dcc0" transform="rotate(-4 180 209)"/>
+  <path d="M168 198h24M168 205h20M168 212h24M168 219h14" stroke="#6b5a42" stroke-width="1.2"/>
+  <g font-family="Special Elite,monospace" fill="#8c9aa4" fill-opacity=".8">
+    <text transform="translate(18 120) skewY(20) scale(.9)" font-size="15" letter-spacing="2">NO BAJES</text>
+    <text transform="translate(18 148) skewY(20) scale(.9)" font-size="15" letter-spacing="2">SOLO</text></g>
+  <ellipse cx="180" cy="330" rx="140" ry="60" fill="url(#haz)" opacity=".7"/>
+  <g stroke="#8c9aa4" stroke-opacity=".6" stroke-width="2" stroke-linecap="round" transform="translate(300 250)"><path d="M0 0v22M7 0v22M14 0v22M21 0v22M-4 16L25 6"/></g>`);
+
+ART.D05 = () => hdr('Una reja oxidada que asoma bajo la pintura descascarada; detrás, una boca redonda tapada con piedras', `
+  <rect width="360" height="420" fill="#141c23"/>
+  <path d="M0 0h360v420H0z" fill="url(#piedra)" opacity=".4"/>
+  <path d="M0 0h170l-30 70 40 40-20 60 30 50H0zM360 0H260l20 80-40 30 30 70-20 60 70 40z" fill="#3c4a54" opacity=".5"/>
+  <path d="M20 30l40 20-10 40 30 10M330 300l-40-10 6-30M40 330l30 20-10 30" stroke="#5d6e7a" stroke-width="2" fill="none" opacity=".5"/>
+  <circle cx="180" cy="210" r="104" fill="#05070a"/>
+  <g>${[[150,170,24],[205,160,22],[120,225,26],[240,215,26],[165,275,28],[215,262,24],[185,215,30],[135,185,18],[230,180,16]].map(([x,y,r])=>
+    `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.8}" fill="#2a3640" stroke="#0a0e12" stroke-width="2"/>`).join('')}</g>
+  <circle cx="180" cy="210" r="108" fill="none" stroke="#2c3944" stroke-width="3"/>
+  <g stroke="#6c3d24" stroke-width="7" fill="none" stroke-linecap="round">
+    ${[60,100,140,180,220,260,300].map(x=>`<path d="M${x} 70V350"/>`).join('')}
+    <path d="M40 110H320M40 210H320M40 310H320" stroke-width="6"/></g>
+  <g stroke="#b6683a" stroke-width="1.6" fill="none" stroke-opacity=".5">${[60,100,140,180,220,260,300].map(x=>`<path d="M${x-2} 70V350"/>`).join('')}</g>
+  <g fill="#8c4a2a" fill-opacity=".6">${[[100,240],[220,130],[60,300],[260,320],[300,110]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5"/>`).join('')}</g>
+  <ellipse cx="180" cy="240" rx="160" ry="150" fill="url(#haz)" opacity=".35"/>`);
+
+ART.D06 = () => hdr('Un espejo sucio bajo una luz fluorescente, con letras escritas al revés sobre el vidrio. Las letras dicen SIGUE LA ESPIRAL, espejadas.', `
+  <rect width="360" height="420" fill="#0d1319"/>
+  <rect width="360" height="420" fill="url(#piedra)" opacity=".35"/>
+  <g class="flash"><rect x="70" y="14" width="220" height="14" rx="6" fill="#d9f3ff"/><ellipse cx="180" cy="26" rx="170" ry="70" fill="url(#brillo)" opacity=".35"/></g>
+  <rect x="60" y="64" width="240" height="300" rx="6" fill="#1a232b" stroke="#3a4a56" stroke-width="8"/>
+  <rect x="68" y="72" width="224" height="284" fill="#1d3340"/>
+  <path d="M68 72L292 72 292 150 68 250Z" fill="#fff" fill-opacity=".05"/>
+  <path d="M120 356C150 250 190 200 292 160V356Z" fill="#fff" fill-opacity=".04"/>
+  <g fill="#b6c7d2" fill-opacity=".25"><circle cx="110" cy="120" r="14"/><circle cx="240" cy="300" r="20"/><circle cx="130" cy="320" r="8"/></g>
+  <g transform="translate(180 0) scale(-1 1)" font-family="Caveat,cursive" font-weight="700" fill="#e8eef2" fill-opacity=".92">
+    <text x="0" y="190" text-anchor="middle" font-size="46" transform="rotate(-4 0 190)">SIGUE LA</text>
+    <text x="0" y="248" text-anchor="middle" font-size="54" transform="rotate(-3 0 248)">ESPIRAL</text></g>
+  <path d="M0 380h360v40H0z" fill="#10161c"/>`);
+
+ART.D07 = () => hdr('Tres bocas de túnel talladas en la roca: un triángulo, un círculo con piedras sueltas alrededor y una espiral', `
+  <rect width="360" height="420" fill="url(#piedra)"/>
+  <rect width="360" height="420" fill="#06080c" opacity=".35"/>
+  <g>
+    <g data-go="D04" role="button" tabindex="0" aria-label="Boca del triángulo"><polygon points="62,310 18,150 106,150" fill="#020304" stroke="#5d6e7a" stroke-width="4" class="boca-aro" transform="translate(0 0)"/>
+      <polygon points="62,326 6,138 118,138" fill="none" stroke="${C.cristal}" stroke-opacity=".25" stroke-width="2"/><rect x="0" y="120" width="124" height="220" fill="transparent"/></g>
+    <g data-go="D08" role="button" tabindex="0" aria-label="Boca del círculo"><circle cx="180" cy="240" r="58" fill="#020304" stroke="#5d6e7a" stroke-width="4" class="boca-aro"/>
+      <circle cx="180" cy="240" r="68" fill="none" stroke="${C.cristal}" stroke-opacity=".25" stroke-width="2"/>
+      ${[[118,196,8],[132,300,10],[230,186,7],[246,292,9],[110,252,6],[256,240,8],[160,314,6],[205,176,6]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.75}" fill="#2c3944" stroke="#0a0e12"/>`).join('')}
+      <rect x="104" y="164" width="152" height="152" fill="transparent"/></g>
+    <g data-go="D09" role="button" tabindex="0" aria-label="Boca de la espiral"><circle cx="298" cy="240" r="58" fill="#020304" stroke="#5d6e7a" stroke-width="4" class="boca-aro"/>
+      <path d="${espiral(298,240,44,2.6)}" fill="none" stroke="#9fb0bb" stroke-opacity=".8" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="298" cy="240" r="68" fill="none" stroke="${C.cristal}" stroke-opacity=".25" stroke-width="2"/><rect x="230" y="172" width="136" height="136" fill="transparent"/></g>
+  </g>
+  <ellipse cx="180" cy="350" rx="190" ry="60" fill="url(#haz)" opacity=".4"/>`);
+
+ART.D08 = () => hdr('Un túnel cerrado por piedras; entre ellas asoman dedos cubiertos de polvo brillante; en la pared, rayas de conteo que se detienen a la mitad', `
+  <rect width="360" height="420" fill="#080b0f"/>
+  <path d="M0 0h360v420H0z" fill="url(#piedra)" opacity=".4"/>
+  <path d="M30 420V120Q180 -10 330 120V420Z" fill="#05070a"/>
+  <g>${[[90,360,48],[160,372,44],[236,360,52],[290,336,40],[60,300,36],[130,300,50],[210,296,46],[272,280,38],[100,232,40],[170,224,48],[236,216,40],[130,170,34],[200,158,36],[260,170,30]].map(([x,y,r],i)=>
+    `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.78}" fill="${['#1e2a34','#26333e','#18222b'][i%3]}" stroke="#05070a" stroke-width="3"/>`).join('')}</g>
+  <g fill="${C.cristal}" fill-opacity=".85" stroke="#d9f3ff" stroke-opacity=".5">
+    ${[[118,262,-8],[148,268,4],[206,258,-4],[240,250,10]].map(([x,y,r])=>`<rect x="${x}" y="${y}" width="9" height="34" rx="4.5" transform="rotate(${r} ${x} ${y})"/>`).join('')}
+    ${[[190,200],[104,200]].map(([x,y])=>`<rect x="${x}" y="${y}" width="8" height="26" rx="4"/>`).join('')}</g>
+  <ellipse cx="180" cy="270" rx="120" ry="70" fill="url(#brillo)" opacity=".25"/>
+  <g stroke="#8c9aa4" stroke-opacity=".7" stroke-width="2.4" stroke-linecap="round">
+    <path d="M44 60v26M52 60v26M60 60v26M68 60v26M38 80L76 66"/><path d="M92 60v26M100 60v26M108 60v26M116 60v26M86 80L124 66"/><path d="M140 60v26M148 60v26M156 60v26"/></g>`);
+
+ART.D09 = () => hdr('Una cueva de cristales gigantes; en una pared, huellas de manos de muchas épocas; a la altura de la mano, un cristal suelto', `
+  <rect width="360" height="420" fill="#06090d"/>
+  <path d="M0 0h360v90Q180 150 0 90z" fill="#0c1218"/>
+  <rect x="0" y="90" width="360" height="330" fill="url(#piedra)" opacity=".3"/>
+  <g>${[[20,420,52,260,6],[78,420,40,190,-8],[300,420,56,280,-6],[250,420,38,170,10],[330,420,40,210,-4],[140,420,30,120,4]].map(([x,y,w,h,l])=>cristal(x,y,w,h,true,l)).join('')}</g>
+  <g>${[[122,150,.9,-10],[150,130,1,6],[182,160,.85,-4],[213,138,1.05,8],[240,166,.8,-12],[135,206,.9,12],[170,214,1,-6],[205,206,.9,4],[236,214,.85,-9]].map(([x,y,s,r],i)=>mano(x,y,s,r,['#cfd8de','#d8c5a0','#9fb0bb'][i%3],.5)).join('')}</g>
+  <g transform="translate(176 360)">${cristal(0,0,34,90,true,-6)}</g>
+  <ellipse cx="176" cy="330" rx="70" ry="60" fill="url(#brillo)" opacity=".35"/>`);
+
+ART.D10 = () => hdr('Casi todo negro; abajo, en una luz débil, dos manos envejecidas y arrugadas sosteniendo un cristal apagado', `
+  <rect width="360" height="420" fill="#020304"/>
+  <ellipse cx="180" cy="330" rx="150" ry="90" fill="url(#haz)" opacity=".18"/>
+  <g opacity=".85">${manoVieja(112,336,1.35,-12)}${manoVieja(248,336,1.35,12)}</g>
+  <g transform="translate(180 366)">${cristal(0,0,52,110,false,0)}</g>`);
+
+ART.D11 = () => hdr('Un solo cristal que brilla un instante; el resto de la cueva sigue en penumbra', `
+  <rect width="360" height="420" fill="#05070a"/>
+  <g opacity=".7">${[[30,420,50,240,6],[310,420,54,260,-6],[90,420,36,150,-8],[260,420,34,140,10]].map(([x,y,w,h,l])=>cristal(x,y,w,h,false,l)).join('')}</g>
+  <g class="pulso"><ellipse cx="180" cy="250" rx="130" ry="150" fill="url(#brillo)" opacity=".5"/>${cristal(180,400,58,230,true,-8)}</g>`);
+
+ART.D12 = () => hdr('Una mano sobre las huellas de la pared; todos los cristales de la cueva encendidos a la vez', `
+  <rect width="360" height="420" fill="#06090d"/>
+  <rect x="0" y="40" width="360" height="380" fill="url(#piedra)" opacity=".3"/>
+  <ellipse cx="180" cy="210" rx="190" ry="210" fill="url(#brillo)" opacity=".28"/>
+  ${[[22,420,52,250,6],[82,420,38,180,-8],[300,420,56,290,-6],[246,420,36,170,10],[336,420,38,210,-4],[145,420,32,130,4],[205,420,30,110,-6],[40,150,26,90,-70],[320,120,26,90,70]].map(([x,y,w,h,l])=>cristal(x,y,w,h,true,l)).join('')}
+  <g>${[[110,150,.9,-10],[144,128,1,6],[110,210,.9,12],[250,160,.9,-4],[220,134,1,8],[252,214,.85,-9],[150,262,.9,6],[214,266,.9,-5]].map(([x,y,s,r])=>mano(x,y,s,r,'#cfd8de',.42)).join('')}</g>
+  ${mano(180,205,1.7,0,'#e6f6ff',.95)}`);
+
+ART.D13 = () => hdr('Un cristal de cerca, con letras de luz talladas por dentro', `
+  <rect width="360" height="420" fill="#04070a"/>
+  <ellipse cx="180" cy="220" rx="170" ry="200" fill="url(#brillo)" opacity=".4"/>
+  <polygon points="90,420 100,150 180,16 262,150 272,420" fill="url(#cr)" stroke="#d9f3ff" stroke-opacity=".7" stroke-width="2"/>
+  <polyline points="180,16 180,420" stroke="#fff" stroke-opacity=".3"/>
+  <polyline points="100,150 180,190 262,150" stroke="#fff" stroke-opacity=".3" fill="none"/>
+  <g stroke="#ffffff" stroke-opacity=".9" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M132 230h96M126 262h84M136 294h98M130 326h60"/></g>
+  <g fill="#fff" fill-opacity=".95"><circle cx="236" cy="262" r="3"/><circle cx="244" cy="326" r="3"/></g>`);
+
+ART.D14 = () => hdr('El mapa en la pared de la cueva, ya lejos, iluminado por los cristales', `
+  <rect width="360" height="420" fill="#05080c"/>
+  <rect width="360" height="420" fill="url(#piedra)" opacity=".35"/>
+  <ellipse cx="180" cy="190" rx="180" ry="170" fill="url(#brillo)" opacity=".16"/>
+  <g stroke="#cfe9f7" stroke-opacity=".7" stroke-width="1.4" fill="none" stroke-linecap="round" transform="translate(180 170) scale(.9)">
+    <rect x="-22" y="-82" width="44" height="16" rx="3"/><path d="M0 -66V-52"/>
+    <rect x="-62" y="-52" width="124" height="104" rx="22"/><rect x="-36" y="-30" width="72" height="60" rx="4"/>
+    <rect x="-98" y="-14" width="30" height="22" rx="2"/><rect x="68" y="-14" width="30" height="22" rx="2"/>
+    <path d="M0 52V74"/><rect x="-46" y="74" width="92" height="38" rx="4"/>
+    <path d="M-26 102l9-16 9 16z"/><circle cx="0" cy="92" r="8"/><path d="${espiral(26,92,8,1.8,.3)}"/>
+    <path d="M-12 -12l24 24M12 -12l-24 24" stroke="#d2402f" stroke-opacity=".8"/></g>
+  ${[[20,420,44,170,4],[340,420,46,200,-4],[70,420,28,100,-6],[292,420,30,110,6]].map(([x,y,w,h,l])=>cristal(x,y,w,h,true,l)).join('')}`);
+
+/* ---------- Iconos de botones ---------- */
+const IC = {
+  tri:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3L22 20H2z"/></svg>',
+  cir:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/></svg>',
+  esp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="${espiral(12,12,9,2.4,.3)}"/></svg>`
+};
+
+/* ---------- Escenas D01-D14 (textos tal cual el kit) ---------- */
+const SC = {
+  D01:{ title:'MAPA 3:17', lines:[{c:'',t:'«Esto nos sacó. No lo dibujó una sola persona.»'},{c:'aviso',t:'— @sebastian.bitacora, 03:17'}],
+    aviso:'Avanza solo con los botones. Contiene suspense e imágenes que pueden perturbar.',
+    btns:[{t:'Bajar',go:'D02',p:1}] },
+  D02:{ kicker:'Llegada', lines:[{c:'mano',t:'«Si encontraste esto, ya estás abajo. El mapa no lo dibujé yo: lo fueron haciendo los que bajaron antes. Lee lo que dejaron. —S.»'}],
+    btns:[{t:'Abrir el mapa',go:'D03',p:1}] },
+  D04:{ kicker:'Pasillo del 4', lines:[{c:'mano',t:'«La boca del triángulo siempre me devolvió a esta puerta. Siempre.»'},{c:'raya',t:'NO BAJES SOLO'}],
+    btns:[{t:'Volver al mapa',go:'D03',p:1}] },
+  D05:{ kicker:'La reja', lines:[{c:'raya',t:'«La del círculo la tapamos nosotros la noche del motín. Adentro quedaron los que no alcanzaron a salir.»'},{c:'notaa',t:'«Al que arranca un cristal, la cueva le cobra en años.»'}],
+    btns:[{t:'Volver al mapa',go:'D03',p:1}] },
+  D06:{ kicker:'Baño del espejo', lines:[],
+    btns:[{t:'Volver al mapa',go:'D03',p:1}] },
+  D07:{ kicker:'Túneles', lines:[{c:'',t:'«Tres bocas. Solo una baja.»'}],
+    btns:[{t:'Triángulo',go:'D04',ic:'tri'},{t:'Círculo',go:'D08',ic:'cir'},{t:'Espiral',go:'D09',ic:'esp'},{t:'Volver al mapa',go:'D03'}], cls:'tres' },
+  D08:{ kicker:'Derrumbe', lines:[{c:'',t:'«Aquí no hay salida. Detrás de las piedras, algo sigue golpeando. Tres veces.»'}],
+    btns:[{t:'Volver a los túneles',go:'D07',p:1}] },
+  D09:{ kicker:'La cueva', lines:[{c:'',t:'«Los cristales zumban. Uno parece suelto. En la roca hay huellas de manos que no son de una sola época.»'}],
+    btns:[{t:'Arrancar un cristal',go:'D10'},{t:'Tocar un cristal',go:'D11'},{t:'Poner tu mano sobre las huellas',go:'D12',p:1},{t:'Volver a los túneles',go:'D07'}], cls:'dos' },
+  D10:{ kicker:'Arrancar un cristal', lines:[{c:'',t:'«La linterna se apaga. Cuando vuelve la luz, tus manos están arrugadas. El cristal te cobró años.»'}],
+    btns:[{t:'Despertar frente al mapa',go:'D03',p:1}] },
+  D11:{ kicker:'Tocar un cristal', lines:[{c:'',t:'«El cristal brilla un segundo y se apaga. Una sola mano no alcanza.»'}],
+    btns:[{t:'Volver a la cueva',go:'D09',p:1}] },
+  D12:{ kicker:'La salida', lines:[{c:'',t:'«Pones tu mano sobre las de otros. Todos los cristales se encienden. Antes de irte, puedes dejar tu marca.»'}],
+    btns:[{t:'Grabar mi marca',go:'D13',p:1},{t:'Irme sin dejarla',go:'D14'}], cls:'dos' },
+  D13:{ kicker:'Graba tu marca', lines:[{c:'',t:'«Toca el cristal. Di desde qué tiempo escribes y quién eres allí. Lo que grabes queda en la piedra para quien baje después.»'}],
+    btns:[{t:'Grabar en el cristal',act:'form',p:1},{t:'Continuar',go:'D14'}], cls:'dos' },
+  D14:{ kicker:'Final', lines:[{c:'',t:'«Saliste. Para ti fueron unos minutos. Afuera, nadie sabe cuánto pasó. El mapa se queda en la cueva, esperando al siguiente.»'}],
+    credits:'Universo transmedia C4TA · Miguel Bermúdez, Wilder Alzate, Vanessa Abril · Narrativa y Nuevas Tecnologías, ITM · 2026',
+    btns:[{t:'Volver a bajar desde otro tiempo',go:'D01',p:1}] }
+};
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let cur = 'D01';
+
+function show(id){
+  cur = id;
+  $('formov').hidden = true;
+  if (id === 'D03') {
+    $('scene').hidden = true; $('scene').innerHTML = '';
+    $('mapscreen').hidden = false; buildMap(); return;
+  }
+  $('mapscreen').hidden = true; $('mapsvg').innerHTML = '';
+  const s = SC[id]; const sc = $('scene'); sc.hidden = false;
+  const lines = (s.lines||[]).map(l => `<p class="txt ${l.c==='aviso'?'':l.c}${l.c==='aviso'?'':''}" ${l.c==='aviso'?'style="font-size:13px;color:var(--tinta-2)"':''}>${esc(l.t)}</p>`).join('');
+  const btns = s.btns.map(b => `<button type="button" class="btn${b.p?' primary':''}${s.cls==='dos'&&s.btns.length%2&&b.p&&s.btns.indexOf(b)===s.btns.length-1?' full':''}" ${b.go?`data-go="${b.go}"`:''} ${b.act?`data-act="${b.act}"`:''}>${b.ic?IC[b.ic]:''}${esc(b.t)}</button>`).join('');
+  sc.innerHTML = `<div class="art">${ART[id]()}</div>
+    <div class="info">
+      ${s.kicker?`<div class="kicker">${esc(id)} · ${esc(s.kicker)}</div>`:''}
+      ${s.title?`<h1 class="titulo">${esc(s.title)}</h1>`:''}
+      ${lines}
+      ${s.aviso?`<p class="aviso">${esc(s.aviso)}</p>`:''}
+      ${s.credits?`<p class="credits">${esc(s.credits)}</p>`:''}
+      <div class="btns ${s.cls||''}">${btns}</div>
+    </div>`;
+}
+
+/* ---------- D03 · El mapa con linterna ---------- */
+function buildMap(){
+  const zona = (go, label, inner, hit) =>
+    `<g data-go="${go}" role="button" tabindex="0" aria-label="${label}">${inner}<rect ${hit} fill="transparent"/></g>`;
+  const ink = '#9fb0bb', line = `stroke="${ink}" stroke-opacity=".7" stroke-width="1.6" fill="none" stroke-linecap="round"`;
+  const zr = (x,y,w,h) => `<rect class="boca-aro" x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="rgba(143,216,255,.07)" stroke="${C.cristal}" stroke-opacity=".75" stroke-width="2"/>`;
+  const nota = (x,y,t,o={}) => `<text x="${x}" y="${y}" font-family="${o.f||'Caveat,cursive'}" font-size="${o.s||15}" fill="${o.c||'#cfd8de'}" fill-opacity="${o.o||.8}" ${o.r?`transform="rotate(${o.r} ${x} ${y})"`:''} ${o.a?`text-anchor="${o.a}"`:''}>${t}</text>`;
+  $('mapsvg').innerHTML = `<svg viewBox="0 0 360 640" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa del edificio visto desde arriba">
+   <defs><pattern id="papel" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#10161c"/><path d="M0 20h40M20 0v40" stroke="#16202a" stroke-width=".6"/></pattern>
+   <radialGradient id="lint" gradientUnits="userSpaceOnUse" cx="180" cy="70" r="210"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".68"/></radialGradient>
+   <radialGradient id="calor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="${C.luz}" stop-opacity=".22"/><stop offset="1" stop-color="${C.luz}" stop-opacity="0"/></radialGradient></defs>
+   <rect width="360" height="640" fill="url(#papel)"/>
+   <!-- margen: marcas semilla -->
+   ${nota(180,24,'«Aquí se oye algo a las 3:17. Nadie nos cree.»',{f:'Special Elite,monospace',s:10.5,a:'middle',o:.7,c:'#a8b6c0'})}
+   <g ${line} opacity=".9">
+    <rect x="130" y="40" width="100" height="38" rx="4"/><path d="M180 78V108"/>
+    <rect x="70" y="108" width="220" height="262" rx="34"/><rect x="108" y="146" width="144" height="186" rx="6"/>
+    <path d="M180 370V408"/>
+   </g>
+   <text x="180" y="64" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#9fb0bb" fill-opacity=".85" letter-spacing=".5">Salón 4 · inicio</text>
+   <text x="180" y="127" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="9.5" fill="#6f808b" letter-spacing="1.2">PASILLO CIRCULAR</text>
+   <!-- zonas clicables -->
+   ${zona('D04','Pasillo del 4', zr(6,216,70,48)+`<text x="41" y="244" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="10.5" font-weight="600" fill="#e8eef2">Pasillo del 4</text>`, 'x="0" y="200" width="82" height="80"')}
+   ${zona('D05','La reja', zr(284,216,70,48)+`<text x="319" y="244" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="10.5" font-weight="600" fill="#e8eef2">La reja</text>`, 'x="278" y="200" width="82" height="80"')}
+   ${zona('D06','Baño del espejo', zr(130,226,100,46)+`<text x="180" y="265" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="10.5" font-weight="600" fill="#e8eef2">Baño del espejo</text><path d="M171 232l18 18M189 232l-18 18" stroke="#d2402f" stroke-width="3.4" stroke-linecap="round"/>`, 'x="124" y="214" width="112" height="70"')}
+   ${zona('D07','Túneles', zr(70,408,220,104)+`<text x="180" y="430" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="600" fill="#e8eef2">Túneles</text>
+      <polygon points="116,498 138,458 160,498" ${line} stroke-width="2"/><circle cx="196" cy="478" r="22" ${line} stroke-width="2"/><path d="${espiral(250,478,20,2.4)}" ${line} stroke-width="2"/>`, 'x="64" y="402" width="232" height="116"')}
+   <!-- cueva -->
+   <ellipse cx="180" cy="566" rx="96" ry="28" fill="#030405" opacity=".95"/><ellipse cx="180" cy="566" rx="120" ry="40" fill="#030405" opacity=".4"/>
+   <path d="M180 512V540" ${line} stroke-dasharray="2 5"/>
+   <!-- marcas semilla -->
+   <g>
+    ${nota(10,296,'NO BAJES SOLO',{f:'Special Elite,monospace',s:9.5,o:.75,c:'#a8b6c0',r:-3})}
+    <g stroke="#8c9aa4" stroke-opacity=".7" stroke-width="1.6" stroke-linecap="round"><path d="M14 306v14M19 306v14M24 306v14M29 306v14M11 316l22-8M40 306v14M45 306v14M50 306v14"/></g>
+    ${nota(150,292,'Yo no dibujé esto.',{s:15,c:'#e07a6c',o:.9,r:-3})}
+    <g stroke="#d2402f" stroke-opacity=".5" stroke-width="2.2" stroke-linecap="round"><path d="M114 284c20-4 36 2 54 8"/></g>
+    ${['«Para ti fue','una noche.','Para mí, años.','—S.»'].map((t,i)=>nota(293,306+i*14,t,{s:11.5,c:'#ffd68a',o:.85})).join('')}
+    <path d="${espiral(40,596,14,2.4,.3)}" ${line} stroke-opacity=".6"/>${mano(78,604,.7,-14,'#cfd8de',.4)}${mano(98,590,.6,10,'#d8c5a0',.35)}
+    ${nota(350,606,'Cuando leas esto, ya habrá salido del edificio. —2047',{f:'Special Elite,monospace',s:8.5,a:'end',c:'#8fd8ff',o:.8})}
+   </g>
+   
+   <circle id="calor" cx="180" cy="60" r="170" fill="url(#calor)" pointer-events="none"/>
+   <rect id="oscuro" x="-200" y="-200" width="760" height="1040" fill="url(#lint)" pointer-events="none"/>
+  </svg>`;
+  const svg = $('mapsvg').firstChild, oscuro = svg.getElementById('oscuro'), calor = svg.getElementById('calor');
+  const lint = svg.getElementById('lint');
+  const luz = (x,y) => {
+    calor.setAttribute('cx',x); calor.setAttribute('cy',y);
+    lint.setAttribute('cx',x); lint.setAttribute('cy',y);
+  };
+  luz(180,70);
+  const mover = e => {
+    const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    const p = pt.matrixTransform(svg.getScreenCTM().inverse()); luz(p.x, p.y);
+  };
+  $('mapsvg').onpointermove = mover; $('mapsvg').onpointerdown = mover;
+}
+
+/* ---------- Formulario «Graba tu marca» ---------- */
+const form = $('marcaform');
+const val = n => (form.querySelector(`input[name="${n}"]:checked`)||{}).value || '';
+form.addEventListener('change', e => {
+  if (e.target.name === 'tiempo') { const o = $('tiempo-otra'); o.hidden = e.target.value !== '__otra'; if (!o.hidden) o.focus(); }
+});
+$('marca').addEventListener('input', () => { $('cuenta').textContent = $('marca').value.length; });
+function cerrarForm(){ $('formov').hidden = true; }
+$('fcerrar').onclick = cerrarForm; $('fvolver').onclick = cerrarForm;
+function abrirForm(){
+  form.reset(); $('tiempo-otra').hidden = true; $('cuenta').textContent = '0'; $('ferr').hidden = true;
+  $('formwrap').hidden = false; $('formok').hidden = true; $('formov').hidden = false; $('formov').scrollTop = 0;
+}
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  let tiempo = val('tiempo'); if (tiempo === '__otra') tiempo = $('tiempo-otra').value.trim();
+  const rec = { tiempo, quien: $('quien').value.trim(), marca: $('marca').value.trim(), lugar: val('lugar'), alias: $('alias').value.trim(), autoriza: $('auth').checked };
+  const falta = !rec.tiempo ? 'Elige desde qué tiempo escribes.' : !rec.quien ? 'Di quién eres en ese tiempo.' : !rec.marca ? 'Escribe tu marca.' : !rec.lugar ? 'Elige dónde la dejas.' : !rec.autoriza ? 'Marca la autorización para grabar.' : '';
+  const err = $('ferr');
+  if (falta) { err.textContent = falta; err.hidden = false; return; }
+  err.hidden = true;
+  try { const db = await claude.use('db'); if (db) await db.collection('marcas').add({ ...rec, creada: Date.now() }); } catch (_) {}
+  try { const k = 'mapa317-marcas'; const a = JSON.parse(localStorage.getItem(k) || '[]'); a.push(rec); localStorage.setItem(k, JSON.stringify(a)); } catch (_) {}
+  $('formwrap').hidden = true; $('formok').hidden = false;
+});
+
+/* ---------- Navegación ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-go],[data-act]'); if (!t) return;
+  if (t.dataset.act === 'form') return abrirForm();
+  if (t.dataset.go) show(t.dataset.go);
+});
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('g[data-go]')) { e.preventDefault(); show(e.target.dataset.go); }
+});
+show('D01');
+
+</script>
+
+</body></html>
